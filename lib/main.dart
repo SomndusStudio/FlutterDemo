@@ -21,7 +21,7 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   Locale currentLocal = Locale('en', 'US');
 
-  // Changer de langue
+  // Switch langage
   void changeLang(String countryCode){
     setState(() {
       currentLocal = Locale(countryCode);

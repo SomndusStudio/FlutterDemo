@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:localization/localization.dart';
-import 'package:tp_twitter/api/api-response.dart';
 import 'package:tp_twitter/app-theme.dart';
-import 'dart:convert' as convert;
-import 'package:http/http.dart' as http;
-import 'package:tp_twitter/api/api-helper.dart';
-import 'package:tp_twitter/auth/service/auth-service.dart';
 import 'package:tp_twitter/auth/viewmodels/auth-viewmodel.dart';
-import 'package:tp_twitter/helper/app-alert-mgr.dart';
-import 'package:tp_twitter/injection.dart';
-import '../../helper/app-lang-dialog.dart';
-import '../../helper/app-validators.dart';
-import '../auth-context.dart';
+import 'package:tp_twitter/helper/app-lang-dialog.dart';
+import 'package:tp_twitter/helper/app-validators.dart';
 
 class LoginPage extends StatelessWidget {
-
   final viewModel = AuthViewModel();
 
   var emailController = TextEditingController(text: 'isaac@gmail.com');
@@ -23,12 +13,14 @@ class LoginPage extends StatelessWidget {
 
   var formKey = GlobalKey<FormState>();
 
+  /// At submit call api from view model
   void onSubmit(BuildContext context) {
     if (formKey.currentState!.validate()) {
       viewModel.callApi(context, emailController.text, passwordController.text);
     }
   }
 
+  /// Show switch lang form on a dialog
   void showLangDialog(BuildContext context) {
     showDialog(
         context: context,

@@ -15,6 +15,7 @@ class MessageServiceApi implements MessageService {
   Future<ApiResponse<List<Tweet>>> getMessages() async {
     var url = Uri.parse("http://localhost:3000/v2/comment/all");
 
+    // Send token to header authorization
     final headers =
     {
       'Authorization': 'Bearer ${ AuthContext().token }'
@@ -24,7 +25,10 @@ class MessageServiceApi implements MessageService {
 
     var json = convert.jsonDecode(response.body);
 
-    var apiResponse = ApiResponse<List<Tweet>>(json['code'], json['message']);
+    // map tweets from json
+    List<Tweet> tweets = List<Tweet>.from(json['data'].map((tweetJson) => Tweet.fromJson(tweetJson)).toList());
+
+    var apiResponse = ApiResponse<List<Tweet>>(json['code'], json['message'], data : tweets);
 
     return apiResponse;
   }

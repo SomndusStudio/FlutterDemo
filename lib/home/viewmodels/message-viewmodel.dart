@@ -17,6 +17,7 @@ class MessageViewModel extends ChangeNotifier {
     // Clear tweets list
     tweets = [];
 
+    // Common api stuff with loading modal
     ApiHelper().commonCallApi(
       context,
       'loading-get_tweets'.i18n(),
@@ -31,7 +32,7 @@ class MessageViewModel extends ChangeNotifier {
         }
         // update tweets list
         tweets = apiResponse.data;
-        // notify
+        // notify observers
         notifyListeners();
       },
     );

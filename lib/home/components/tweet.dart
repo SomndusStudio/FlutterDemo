@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'tweet.g.dart';
+
+@JsonSerializable()
 class Tweet {
   int id;
   String profile;
@@ -7,24 +12,27 @@ class Tweet {
 
   Tweet(this.id, this.profile, this.created_date, this.author, this.message);
 
-  static Tweet fromJson(Map<String, dynamic> json) {
-    return Tweet(json['id'], json['profile'], json['created_date'], json['author'], json['message']);
-  }
+  /// Connect the generated [_$TweetFromJson] function to the `fromJson`
+  /// factory.
+  factory Tweet.fromJson(Map<String, dynamic> json) => _$TweetFromJson(json);
+
+  /// Connect the generated [_$TweetToJson] function to the `toJson` method.
+  Map<String, dynamic> toJson() => _$TweetToJson(this);
 
   String formatDuration() {
-    // Convertir le timestamp en objet DateTime
+    // Convert timestamp to DateTime
     DateTime dateTime =
-    DateTime.fromMillisecondsSinceEpoch(created_date * 1000);
+        DateTime.fromMillisecondsSinceEpoch(created_date * 1000);
 
-    // Calculer la différence entre la date actuelle et le timestamp
+    // Diff from now and tweet created date
     Duration difference = DateTime.now().difference(dateTime);
 
-    // Si la différence est négative (timestamp dans le futur), retourner une chaîne vide
+    // Should'nt have negative timestamp
     if (difference.isNegative) {
       return '';
     }
 
-    // Afficher le format approprié en fonction de la durée écoulée
+    // Format displayed date
     if (difference.inDays > 0) {
       return '${difference.inDays}d';
     }
@@ -37,7 +45,7 @@ class Tweet {
     return '${difference.inSeconds}s';
   }
 
-  String displayDate(){
+  String displayDate() {
     return formatDuration();
   }
 }

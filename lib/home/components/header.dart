@@ -9,11 +9,11 @@ class HeaderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Si icon url (afficher icon button)
+    // If should display icon
     if (this.iconUrl != null){
       return IconButton(onPressed: () {}, icon: Image.asset(this.iconUrl!, width: 24,));
     }
-    // sinon par défaut le text
+    // By default display text
     return Text(
       this.label!,
       style: TextStyle(color: Colors.white),

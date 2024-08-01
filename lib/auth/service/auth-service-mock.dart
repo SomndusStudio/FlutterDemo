@@ -6,13 +6,11 @@ import 'package:tp_twitter/auth/service/auth-service.dart';
 @Named("mock")
 @Singleton(as: AuthService)
 class AuthServiceMock implements AuthService {
-
   @override
   Future<ApiResponse<String>> postAuth(String email, String password) async {
-
     const fakeToken = "5s5d15s1d5s1d15sd";
 
-    // Simuler 1 sec de lag
+    // Simulate fake 1 second lag
     await Future.delayed(Duration(seconds: 1));
 
     return ApiResponse("203", "Connecte(é) avec succès", data: fakeToken);

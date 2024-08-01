@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import 'package:provider/provider.dart';
-import 'package:tp_twitter/helper/app-alert-mgr.dart';
 import 'package:tp_twitter/home/components/footer.dart';
 import 'package:tp_twitter/home/components/header.dart';
-import 'dart:convert' as convert;
-import 'package:http/http.dart' as http;
 import 'package:tp_twitter/home/components/tweet-card.dart';
-import 'package:tp_twitter/home/components/tweet.dart';
 import 'package:tp_twitter/home/viewmodels/message-viewmodel.dart';
-
-import '../auth/auth-context.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,9 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late MessageViewModel viewModel;
 
-  /**
-   * Va appeler l'api
-   */
+  /// Call api from view model
   void callApi(BuildContext context) async {
     viewModel.callApi(context);
   }
